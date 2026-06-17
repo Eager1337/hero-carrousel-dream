@@ -139,10 +139,10 @@ function ToonhubHero() {
             The artwork is stunning, shipped fully prepared. The finish is a vision, the 3D craft is flawless. Many thanks! Wishing you the win. Order now.
           </p>
           <div className="flex gap-3">
-            <button onClick={() => navigate("prev")} aria-label="Previous figurine" className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center border-2 border-white text-white hover:bg-white/15 hover:scale-108 transition-all duration-150">
+            <button onClick={() => navigate("prev")} aria-label="Previous figurine" className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center border-2 border-white text-white hover:bg-white/15 hover:scale-110 transition-all duration-150">
               <ArrowLeft size={26} strokeWidth={2.25} />
             </button>
-            <button onClick={() => navigate("next")} aria-label="Next figurine" className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center border-2 border-white text-white hover:bg-white/15 hover:scale-108 transition-all duration-150">
+            <button onClick={() => navigate("next")} aria-label="Next figurine" className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center border-2 border-white text-white hover:bg-white/15 hover:scale-110 transition-all duration-150">
               <ArrowRight size={26} strokeWidth={2.25} />
             </button>
           </div>
