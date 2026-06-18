@@ -532,6 +532,7 @@ function HomePage() {
       <ServicesSection />
       <ProjectsSection />
       <VanguardHero />
+      <LithosHero />
     </main>
   );
 }
