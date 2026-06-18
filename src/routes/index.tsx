@@ -238,6 +238,41 @@ const MARQUEE_IMGS = [
   "hero-celestia-preview-0yO3jXO8",
 ].map((s) => `https://motionsites.ai/assets/${s}.gif`);
 
+function LazyGif({ src }: { src: string }) {
+  const ref = useRef<HTMLImageElement>(null);
+  const [load, setLoad] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setLoad(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "400px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <img
+      ref={ref}
+      src={load ? src : undefined}
+      loading="lazy"
+      decoding="async"
+      // @ts-expect-error fetchpriority is valid HTML
+      fetchpriority="low"
+      width={420}
+      height={270}
+      alt=""
+      className="rounded-2xl object-cover flex-shrink-0 bg-neutral-900"
+      style={{ width: 420, height: 270 }}
+    />
+  );
+}
+
 function MarqueeSection() {
   const ref = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
@@ -257,7 +292,7 @@ function MarqueeSection() {
   const Row = ({ imgs, dir }: { imgs: string[]; dir: 1 | -1 }) => (
     <div className="flex gap-3" style={{ transform: `translateX(${dir * (offset - 200)}px)`, willChange: "transform" }}>
       {imgs.map((src, i) => (
-        <img key={i} src={src} loading="lazy" alt="" className="rounded-2xl object-cover flex-shrink-0" style={{ width: 420, height: 270 }} />
+        <LazyGif key={i} src={src} />
       ))}
     </div>
   );
