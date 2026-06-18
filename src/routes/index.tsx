@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Award, Crown, X } from "lucide-rea
 import { motion, useScroll, useTransform } from "framer-motion";
 import charBlack from "../assets/char-black.png";
 import charWhite from "../assets/char-white.png";
+import LithosHero from "../components/LithosHero";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -114,7 +115,7 @@ function ToonhubHero() {
         />
 
         <div className="absolute inset-x-0 flex items-center justify-center pointer-events-none select-none" style={{ zIndex: 2, top: "18%" }}>
-          <span style={{ fontFamily: "Anton, sans-serif", fontSize: "clamp(60px, 22vw, 300px)", fontWeight: 900, color: "#fff", lineHeight: 1, textTransform: "uppercase", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>
+          <span style={{ fontFamily: "Anton, sans-serif", fontSize: "clamp(48px, 17.6vw, 240px)", fontWeight: 900, color: "#fff", lineHeight: 1, textTransform: "uppercase", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>
             EAGER BEAVERS
           </span>
         </div>
@@ -199,8 +200,8 @@ function JackHero() {
       <div className="flex-1 flex flex-col justify-between relative">
         <FadeIn delay={0.15} y={40}>
           <div className="overflow-hidden mt-6 sm:mt-4 md:-mt-5 px-4">
-            <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center" style={{ fontSize: "clamp(3rem,15vw,17.5vw)" }}>
-              Hi, i&apos;m jack
+            <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center" style={{ fontSize: "clamp(2.4rem,12vw,14vw)" }}>
+              Hi, i&apos;m eager beaver
             </h1>
           </div>
         </FadeIn>
@@ -237,6 +238,41 @@ const MARQUEE_IMGS = [
   "hero-celestia-preview-0yO3jXO8",
 ].map((s) => `https://motionsites.ai/assets/${s}.gif`);
 
+function LazyGif({ src }: { src: string }) {
+  const ref = useRef<HTMLImageElement>(null);
+  const [load, setLoad] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setLoad(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "400px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <img
+      ref={ref}
+      src={load ? src : undefined}
+      loading="lazy"
+      decoding="async"
+      // @ts-expect-error fetchpriority is valid HTML
+      fetchpriority="low"
+      width={420}
+      height={270}
+      alt=""
+      className="rounded-2xl object-cover flex-shrink-0 bg-neutral-900"
+      style={{ width: 420, height: 270 }}
+    />
+  );
+}
+
 function MarqueeSection() {
   const ref = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
@@ -256,7 +292,7 @@ function MarqueeSection() {
   const Row = ({ imgs, dir }: { imgs: string[]; dir: 1 | -1 }) => (
     <div className="flex gap-3" style={{ transform: `translateX(${dir * (offset - 200)}px)`, willChange: "transform" }}>
       {imgs.map((src, i) => (
-        <img key={i} src={src} loading="lazy" alt="" className="rounded-2xl object-cover flex-shrink-0" style={{ width: 420, height: 270 }} />
+        <LazyGif key={i} src={src} />
       ))}
     </div>
   );
@@ -496,6 +532,7 @@ function HomePage() {
       <ServicesSection />
       <ProjectsSection />
       <VanguardHero />
+      <LithosHero />
     </main>
   );
 }
