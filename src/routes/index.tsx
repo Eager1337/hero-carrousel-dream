@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Award, Crown, X } from "lucide-rea
 import { motion, useScroll, useTransform } from "framer-motion";
 import charBlack from "../assets/char-black.png";
 import charWhite from "../assets/char-white.png";
+import LithosHero from "../components/LithosHero";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -114,7 +115,7 @@ function ToonhubHero() {
         />
 
         <div className="absolute inset-x-0 flex items-center justify-center pointer-events-none select-none" style={{ zIndex: 2, top: "18%" }}>
-          <span style={{ fontFamily: "Anton, sans-serif", fontSize: "clamp(60px, 22vw, 300px)", fontWeight: 900, color: "#fff", lineHeight: 1, textTransform: "uppercase", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>
+          <span style={{ fontFamily: "Anton, sans-serif", fontSize: "clamp(48px, 17.6vw, 240px)", fontWeight: 900, color: "#fff", lineHeight: 1, textTransform: "uppercase", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>
             EAGER BEAVERS
           </span>
         </div>
@@ -199,8 +200,8 @@ function JackHero() {
       <div className="flex-1 flex flex-col justify-between relative">
         <FadeIn delay={0.15} y={40}>
           <div className="overflow-hidden mt-6 sm:mt-4 md:-mt-5 px-4">
-            <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center" style={{ fontSize: "clamp(3rem,15vw,17.5vw)" }}>
-              Hi, i&apos;m jack
+            <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center" style={{ fontSize: "clamp(2.4rem,12vw,14vw)" }}>
+              Hi, i&apos;m eager beaver
             </h1>
           </div>
         </FadeIn>
