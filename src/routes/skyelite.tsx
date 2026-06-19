@@ -14,13 +14,13 @@ export const Route = createFileRoute("/skyelite")({
   component: SkyEliteLayout,
 });
 
-const NAV = [
+const NAV: { to: string; label: string; exact?: boolean }[] = [
   { to: "/skyelite", label: "Start", exact: true },
   { to: "/skyelite/story", label: "Story" },
   { to: "/skyelite/rates", label: "Rates" },
   { to: "/skyelite/benefits", label: "Benefits" },
   { to: "/skyelite/faq", label: "FAQ" },
-] as const;
+];
 
 function SkyEliteLayout() {
   const [open, setOpen] = useState(false);

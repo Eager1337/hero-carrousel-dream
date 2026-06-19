@@ -9,12 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SkyeliteRouteImport } from './routes/skyelite'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SkyeliteIndexRouteImport } from './routes/skyelite.index'
+import { Route as SkyeliteStoryRouteImport } from './routes/skyelite.story'
+import { Route as SkyeliteRatesRouteImport } from './routes/skyelite.rates'
+import { Route as SkyeliteFaqRouteImport } from './routes/skyelite.faq'
+import { Route as SkyeliteBookRouteImport } from './routes/skyelite.book'
+import { Route as SkyeliteBenefitsRouteImport } from './routes/skyelite.benefits'
 
+const SkyeliteRoute = SkyeliteRouteImport.update({
+  id: '/skyelite',
+  path: '/skyelite',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,40 +40,139 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SkyeliteIndexRoute = SkyeliteIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SkyeliteRoute,
+} as any)
+const SkyeliteStoryRoute = SkyeliteStoryRouteImport.update({
+  id: '/story',
+  path: '/story',
+  getParentRoute: () => SkyeliteRoute,
+} as any)
+const SkyeliteRatesRoute = SkyeliteRatesRouteImport.update({
+  id: '/rates',
+  path: '/rates',
+  getParentRoute: () => SkyeliteRoute,
+} as any)
+const SkyeliteFaqRoute = SkyeliteFaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => SkyeliteRoute,
+} as any)
+const SkyeliteBookRoute = SkyeliteBookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => SkyeliteRoute,
+} as any)
+const SkyeliteBenefitsRoute = SkyeliteBenefitsRouteImport.update({
+  id: '/benefits',
+  path: '/benefits',
+  getParentRoute: () => SkyeliteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
+  '/skyelite': typeof SkyeliteRouteWithChildren
+  '/skyelite/benefits': typeof SkyeliteBenefitsRoute
+  '/skyelite/book': typeof SkyeliteBookRoute
+  '/skyelite/faq': typeof SkyeliteFaqRoute
+  '/skyelite/rates': typeof SkyeliteRatesRoute
+  '/skyelite/story': typeof SkyeliteStoryRoute
+  '/skyelite/': typeof SkyeliteIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
+  '/skyelite/benefits': typeof SkyeliteBenefitsRoute
+  '/skyelite/book': typeof SkyeliteBookRoute
+  '/skyelite/faq': typeof SkyeliteFaqRoute
+  '/skyelite/rates': typeof SkyeliteRatesRoute
+  '/skyelite/story': typeof SkyeliteStoryRoute
+  '/skyelite': typeof SkyeliteIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/portfolio': typeof PortfolioRoute
+  '/skyelite': typeof SkyeliteRouteWithChildren
+  '/skyelite/benefits': typeof SkyeliteBenefitsRoute
+  '/skyelite/book': typeof SkyeliteBookRoute
+  '/skyelite/faq': typeof SkyeliteFaqRoute
+  '/skyelite/rates': typeof SkyeliteRatesRoute
+  '/skyelite/story': typeof SkyeliteStoryRoute
+  '/skyelite/': typeof SkyeliteIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/portfolio'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/portfolio'
+    | '/skyelite'
+    | '/skyelite/benefits'
+    | '/skyelite/book'
+    | '/skyelite/faq'
+    | '/skyelite/rates'
+    | '/skyelite/story'
+    | '/skyelite/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/portfolio'
-  id: '__root__' | '/' | '/portfolio'
+  to:
+    | '/'
+    | '/contact'
+    | '/portfolio'
+    | '/skyelite/benefits'
+    | '/skyelite/book'
+    | '/skyelite/faq'
+    | '/skyelite/rates'
+    | '/skyelite/story'
+    | '/skyelite'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/portfolio'
+    | '/skyelite'
+    | '/skyelite/benefits'
+    | '/skyelite/book'
+    | '/skyelite/faq'
+    | '/skyelite/rates'
+    | '/skyelite/story'
+    | '/skyelite/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
   PortfolioRoute: typeof PortfolioRoute
+  SkyeliteRoute: typeof SkyeliteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/skyelite': {
+      id: '/skyelite'
+      path: '/skyelite'
+      fullPath: '/skyelite'
+      preLoaderRoute: typeof SkyeliteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/portfolio': {
       id: '/portfolio'
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -65,23 +182,79 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/skyelite/': {
+      id: '/skyelite/'
+      path: '/'
+      fullPath: '/skyelite/'
+      preLoaderRoute: typeof SkyeliteIndexRouteImport
+      parentRoute: typeof SkyeliteRoute
+    }
+    '/skyelite/story': {
+      id: '/skyelite/story'
+      path: '/story'
+      fullPath: '/skyelite/story'
+      preLoaderRoute: typeof SkyeliteStoryRouteImport
+      parentRoute: typeof SkyeliteRoute
+    }
+    '/skyelite/rates': {
+      id: '/skyelite/rates'
+      path: '/rates'
+      fullPath: '/skyelite/rates'
+      preLoaderRoute: typeof SkyeliteRatesRouteImport
+      parentRoute: typeof SkyeliteRoute
+    }
+    '/skyelite/faq': {
+      id: '/skyelite/faq'
+      path: '/faq'
+      fullPath: '/skyelite/faq'
+      preLoaderRoute: typeof SkyeliteFaqRouteImport
+      parentRoute: typeof SkyeliteRoute
+    }
+    '/skyelite/book': {
+      id: '/skyelite/book'
+      path: '/book'
+      fullPath: '/skyelite/book'
+      preLoaderRoute: typeof SkyeliteBookRouteImport
+      parentRoute: typeof SkyeliteRoute
+    }
+    '/skyelite/benefits': {
+      id: '/skyelite/benefits'
+      path: '/benefits'
+      fullPath: '/skyelite/benefits'
+      preLoaderRoute: typeof SkyeliteBenefitsRouteImport
+      parentRoute: typeof SkyeliteRoute
+    }
   }
 }
 
+interface SkyeliteRouteChildren {
+  SkyeliteBenefitsRoute: typeof SkyeliteBenefitsRoute
+  SkyeliteBookRoute: typeof SkyeliteBookRoute
+  SkyeliteFaqRoute: typeof SkyeliteFaqRoute
+  SkyeliteRatesRoute: typeof SkyeliteRatesRoute
+  SkyeliteStoryRoute: typeof SkyeliteStoryRoute
+  SkyeliteIndexRoute: typeof SkyeliteIndexRoute
+}
+
+const SkyeliteRouteChildren: SkyeliteRouteChildren = {
+  SkyeliteBenefitsRoute: SkyeliteBenefitsRoute,
+  SkyeliteBookRoute: SkyeliteBookRoute,
+  SkyeliteFaqRoute: SkyeliteFaqRoute,
+  SkyeliteRatesRoute: SkyeliteRatesRoute,
+  SkyeliteStoryRoute: SkyeliteStoryRoute,
+  SkyeliteIndexRoute: SkyeliteIndexRoute,
+}
+
+const SkyeliteRouteWithChildren = SkyeliteRoute._addFileChildren(
+  SkyeliteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
   PortfolioRoute: PortfolioRoute,
+  SkyeliteRoute: SkyeliteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
