@@ -11,9 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SkyeliteRouteImport } from './routes/skyelite'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as HaloRouteImport } from './routes/halo'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SkyeliteIndexRouteImport } from './routes/skyelite.index'
+import { Route as WorkAuraiRouteImport } from './routes/work.aurai'
+import { Route as WorkAeonRouteImport } from './routes/work.aeon'
 import { Route as SkyeliteStoryRouteImport } from './routes/skyelite.story'
 import { Route as SkyeliteRatesRouteImport } from './routes/skyelite.rates'
 import { Route as SkyeliteFaqRouteImport } from './routes/skyelite.faq'
@@ -30,6 +33,11 @@ const PortfolioRoute = PortfolioRouteImport.update({
   path: '/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HaloRoute = HaloRouteImport.update({
+  id: '/halo',
+  path: '/halo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -44,6 +52,16 @@ const SkyeliteIndexRoute = SkyeliteIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SkyeliteRoute,
+} as any)
+const WorkAuraiRoute = WorkAuraiRouteImport.update({
+  id: '/work/aurai',
+  path: '/work/aurai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkAeonRoute = WorkAeonRouteImport.update({
+  id: '/work/aeon',
+  path: '/work/aeon',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SkyeliteStoryRoute = SkyeliteStoryRouteImport.update({
   id: '/story',
@@ -74,6 +92,7 @@ const SkyeliteBenefitsRoute = SkyeliteBenefitsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/halo': typeof HaloRoute
   '/portfolio': typeof PortfolioRoute
   '/skyelite': typeof SkyeliteRouteWithChildren
   '/skyelite/benefits': typeof SkyeliteBenefitsRoute
@@ -81,23 +100,29 @@ export interface FileRoutesByFullPath {
   '/skyelite/faq': typeof SkyeliteFaqRoute
   '/skyelite/rates': typeof SkyeliteRatesRoute
   '/skyelite/story': typeof SkyeliteStoryRoute
+  '/work/aeon': typeof WorkAeonRoute
+  '/work/aurai': typeof WorkAuraiRoute
   '/skyelite/': typeof SkyeliteIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/halo': typeof HaloRoute
   '/portfolio': typeof PortfolioRoute
   '/skyelite/benefits': typeof SkyeliteBenefitsRoute
   '/skyelite/book': typeof SkyeliteBookRoute
   '/skyelite/faq': typeof SkyeliteFaqRoute
   '/skyelite/rates': typeof SkyeliteRatesRoute
   '/skyelite/story': typeof SkyeliteStoryRoute
+  '/work/aeon': typeof WorkAeonRoute
+  '/work/aurai': typeof WorkAuraiRoute
   '/skyelite': typeof SkyeliteIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/halo': typeof HaloRoute
   '/portfolio': typeof PortfolioRoute
   '/skyelite': typeof SkyeliteRouteWithChildren
   '/skyelite/benefits': typeof SkyeliteBenefitsRoute
@@ -105,6 +130,8 @@ export interface FileRoutesById {
   '/skyelite/faq': typeof SkyeliteFaqRoute
   '/skyelite/rates': typeof SkyeliteRatesRoute
   '/skyelite/story': typeof SkyeliteStoryRoute
+  '/work/aeon': typeof WorkAeonRoute
+  '/work/aurai': typeof WorkAuraiRoute
   '/skyelite/': typeof SkyeliteIndexRoute
 }
 export interface FileRouteTypes {
@@ -112,6 +139,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact'
+    | '/halo'
     | '/portfolio'
     | '/skyelite'
     | '/skyelite/benefits'
@@ -119,22 +147,28 @@ export interface FileRouteTypes {
     | '/skyelite/faq'
     | '/skyelite/rates'
     | '/skyelite/story'
+    | '/work/aeon'
+    | '/work/aurai'
     | '/skyelite/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/contact'
+    | '/halo'
     | '/portfolio'
     | '/skyelite/benefits'
     | '/skyelite/book'
     | '/skyelite/faq'
     | '/skyelite/rates'
     | '/skyelite/story'
+    | '/work/aeon'
+    | '/work/aurai'
     | '/skyelite'
   id:
     | '__root__'
     | '/'
     | '/contact'
+    | '/halo'
     | '/portfolio'
     | '/skyelite'
     | '/skyelite/benefits'
@@ -142,14 +176,19 @@ export interface FileRouteTypes {
     | '/skyelite/faq'
     | '/skyelite/rates'
     | '/skyelite/story'
+    | '/work/aeon'
+    | '/work/aurai'
     | '/skyelite/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  HaloRoute: typeof HaloRoute
   PortfolioRoute: typeof PortfolioRoute
   SkyeliteRoute: typeof SkyeliteRouteWithChildren
+  WorkAeonRoute: typeof WorkAeonRoute
+  WorkAuraiRoute: typeof WorkAuraiRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -166,6 +205,13 @@ declare module '@tanstack/react-router' {
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/halo': {
+      id: '/halo'
+      path: '/halo'
+      fullPath: '/halo'
+      preLoaderRoute: typeof HaloRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -188,6 +234,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/skyelite/'
       preLoaderRoute: typeof SkyeliteIndexRouteImport
       parentRoute: typeof SkyeliteRoute
+    }
+    '/work/aurai': {
+      id: '/work/aurai'
+      path: '/work/aurai'
+      fullPath: '/work/aurai'
+      preLoaderRoute: typeof WorkAuraiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/aeon': {
+      id: '/work/aeon'
+      path: '/work/aeon'
+      fullPath: '/work/aeon'
+      preLoaderRoute: typeof WorkAeonRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/skyelite/story': {
       id: '/skyelite/story'
@@ -252,19 +312,12 @@ const SkyeliteRouteWithChildren = SkyeliteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  HaloRoute: HaloRoute,
   PortfolioRoute: PortfolioRoute,
   SkyeliteRoute: SkyeliteRouteWithChildren,
+  WorkAeonRoute: WorkAeonRoute,
+  WorkAuraiRoute: WorkAuraiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

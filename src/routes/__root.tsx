@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { MotionConfig } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -125,14 +126,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-      <Link
-        to="/portfolio"
-        className="fixed bottom-4 right-4 z-[100] rounded-full bg-white/95 px-4 py-2 text-xs font-semibold text-black shadow-lg hover:bg-white transition-colors backdrop-blur"
-      >
-        About Eager Beaver →
-      </Link>
+      <MotionConfig reducedMotion="user">
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+        <Link
+          to="/portfolio"
+          className="fixed bottom-4 right-4 z-[100] rounded-full bg-white/95 px-4 py-2 text-xs font-semibold text-black shadow-lg hover:bg-white transition-colors backdrop-blur"
+        >
+          About Eager Beaver →
+        </Link>
+      </MotionConfig>
     </QueryClientProvider>
   );
 }

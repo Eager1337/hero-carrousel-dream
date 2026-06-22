@@ -1,26 +1,39 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Plane, Compass } from "lucide-react";
 
 const VIDEO_URL =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260601_110537_3a579fa0-7bbc-4d94-9d25-0e816c7840f5.mp4";
+const POSTER_URL =
+  "https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=1920&q=70";
 
 export const Route = createFileRoute("/skyelite/")({
   component: SkyEliteHero,
 });
 
 function SkyEliteHero() {
+  const reduce = useReducedMotion();
   return (
     <section className="relative h-[100dvh] w-full overflow-hidden">
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        src={VIDEO_URL}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-      />
+      {reduce ? (
+        <img
+          src={POSTER_URL}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      ) : (
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src={VIDEO_URL}
+          poster={POSTER_URL}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
+      )}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/80" />
 
       <div className="relative z-10 h-full flex flex-col justify-end px-6 sm:px-10 pb-16 sm:pb-24 max-w-6xl mx-auto">
