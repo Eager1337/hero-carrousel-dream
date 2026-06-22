@@ -170,7 +170,31 @@ function PortfolioPage() {
       {/* Stack */}
       <section id="work" className="px-5 sm:px-8 py-20 border-t border-white/5">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs uppercase tracking-[0.3em] text-[#E63946]">Toolbox</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-[#E63946]">Featured work</p>
+          <h2 className="mt-3 font-[Anton,sans-serif] uppercase text-4xl sm:text-6xl leading-none">
+            Hero showcases.
+          </h2>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              { to: "/work/aurai", title: "Aurai", tag: "Ambient AI", grad: "from-fuchsia-500/30 to-cyan-500/20" },
+              { to: "/work/aeon", title: "Aeon", tag: "Cinematic launch", grad: "from-indigo-500/30 to-sky-500/10" },
+              { to: "/halo", title: "USD Halo", tag: "Premium fintech", grad: "from-sky-400/30 to-indigo-500/10" },
+            ].map((p) => (
+              <Link
+                key={p.to}
+                to={p.to}
+                className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${p.grad} p-6 h-56 flex flex-col justify-between hover:border-white/30 transition-colors`}
+              >
+                <span className="text-xs uppercase tracking-[0.25em] text-white/70">{p.tag}</span>
+                <div className="flex items-end justify-between">
+                  <h3 className="font-[Anton,sans-serif] uppercase text-3xl tracking-wide">{p.title}</h3>
+                  <ArrowUpRight className="w-5 h-5 text-white/70 group-hover:text-white transition" />
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <p className="mt-16 text-xs uppercase tracking-[0.3em] text-[#E63946]">Toolbox</p>
           <h2 className="mt-3 font-[Anton,sans-serif] uppercase text-4xl sm:text-6xl leading-none">
             The stack I ship with.
           </h2>
