@@ -15,6 +15,7 @@ import { Route as HaloRouteImport } from './routes/halo'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SkyeliteIndexRouteImport } from './routes/skyelite.index'
+import { Route as WorkIosRouteImport } from './routes/work.ios'
 import { Route as WorkAuraiRouteImport } from './routes/work.aurai'
 import { Route as WorkAeonRouteImport } from './routes/work.aeon'
 import { Route as SkyeliteStoryRouteImport } from './routes/skyelite.story'
@@ -52,6 +53,11 @@ const SkyeliteIndexRoute = SkyeliteIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SkyeliteRoute,
+} as any)
+const WorkIosRoute = WorkIosRouteImport.update({
+  id: '/work/ios',
+  path: '/work/ios',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const WorkAuraiRoute = WorkAuraiRouteImport.update({
   id: '/work/aurai',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/skyelite/story': typeof SkyeliteStoryRoute
   '/work/aeon': typeof WorkAeonRoute
   '/work/aurai': typeof WorkAuraiRoute
+  '/work/ios': typeof WorkIosRoute
   '/skyelite/': typeof SkyeliteIndexRoute
 }
 export interface FileRoutesByTo {
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/skyelite/story': typeof SkyeliteStoryRoute
   '/work/aeon': typeof WorkAeonRoute
   '/work/aurai': typeof WorkAuraiRoute
+  '/work/ios': typeof WorkIosRoute
   '/skyelite': typeof SkyeliteIndexRoute
 }
 export interface FileRoutesById {
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/skyelite/story': typeof SkyeliteStoryRoute
   '/work/aeon': typeof WorkAeonRoute
   '/work/aurai': typeof WorkAuraiRoute
+  '/work/ios': typeof WorkIosRoute
   '/skyelite/': typeof SkyeliteIndexRoute
 }
 export interface FileRouteTypes {
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
     | '/skyelite/story'
     | '/work/aeon'
     | '/work/aurai'
+    | '/work/ios'
     | '/skyelite/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/skyelite/story'
     | '/work/aeon'
     | '/work/aurai'
+    | '/work/ios'
     | '/skyelite'
   id:
     | '__root__'
@@ -178,6 +189,7 @@ export interface FileRouteTypes {
     | '/skyelite/story'
     | '/work/aeon'
     | '/work/aurai'
+    | '/work/ios'
     | '/skyelite/'
   fileRoutesById: FileRoutesById
 }
@@ -189,6 +201,7 @@ export interface RootRouteChildren {
   SkyeliteRoute: typeof SkyeliteRouteWithChildren
   WorkAeonRoute: typeof WorkAeonRoute
   WorkAuraiRoute: typeof WorkAuraiRoute
+  WorkIosRoute: typeof WorkIosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -234,6 +247,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/skyelite/'
       preLoaderRoute: typeof SkyeliteIndexRouteImport
       parentRoute: typeof SkyeliteRoute
+    }
+    '/work/ios': {
+      id: '/work/ios'
+      path: '/work/ios'
+      fullPath: '/work/ios'
+      preLoaderRoute: typeof WorkIosRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/work/aurai': {
       id: '/work/aurai'
@@ -317,17 +337,8 @@ const rootRouteChildren: RootRouteChildren = {
   SkyeliteRoute: SkyeliteRouteWithChildren,
   WorkAeonRoute: WorkAeonRoute,
   WorkAuraiRoute: WorkAuraiRoute,
+  WorkIosRoute: WorkIosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
