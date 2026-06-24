@@ -53,7 +53,7 @@ function DatacorePage() {
         <motion.h1
           {...fade}
           transition={reduce ? undefined : { duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 font-[\"Instrument_Serif\",serif] text-5xl sm:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight"
+          className="mt-8 font-[Instrument_Serif,serif] text-5xl sm:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight"
         >
           Your Networks.<br />
           <span className="italic text-white/90">One Rapid Interface.</span>

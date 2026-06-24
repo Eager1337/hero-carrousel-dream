@@ -60,7 +60,7 @@ function TaskoraPage() {
           transition={reduce ? undefined : { duration: 0.9, delay: 0.1 }}
           className="mt-6 text-5xl sm:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight font-light"
         >
-          Simplify Your <span className="italic font-[\"Instrument_Serif\",serif] font-normal">Workflow.</span><br />
+          Simplify Your <span className="italic font-[Instrument_Serif,serif] font-normal">Workflow.</span><br />
           Stay Focused.
         </motion.h1>
 
