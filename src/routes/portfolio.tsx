@@ -179,6 +179,7 @@ function PortfolioPage() {
               { to: "/work/aurai", title: "Aurai", tag: "Ambient AI", grad: "from-fuchsia-500/30 to-cyan-500/20" },
               { to: "/work/aeon", title: "Aeon", tag: "Cinematic launch", grad: "from-indigo-500/30 to-sky-500/10" },
               { to: "/halo", title: "USD Halo", tag: "Premium fintech", grad: "from-sky-400/30 to-indigo-500/10" },
+              { to: "/work/ios", title: "iOS trio", tag: "Mobile templates", grad: "from-emerald-500/30 to-teal-500/10" },
             ].map((p) => (
               <Link
                 key={p.to}
