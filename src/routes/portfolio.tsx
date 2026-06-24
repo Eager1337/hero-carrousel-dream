@@ -174,7 +174,7 @@ function PortfolioPage() {
           <h2 className="mt-3 font-[Anton,sans-serif] uppercase text-4xl sm:text-6xl leading-none">
             Hero showcases.
           </h2>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { to: "/work/aurai", title: "Aurai", tag: "Ambient AI", grad: "from-fuchsia-500/30 to-cyan-500/20" },
               { to: "/work/aeon", title: "Aeon", tag: "Cinematic launch", grad: "from-indigo-500/30 to-sky-500/10" },
