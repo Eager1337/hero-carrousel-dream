@@ -15,7 +15,10 @@ import { Route as HaloRouteImport } from './routes/halo'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SkyeliteIndexRouteImport } from './routes/skyelite.index'
+import { Route as WorkTaskoraRouteImport } from './routes/work.taskora'
 import { Route as WorkIosRouteImport } from './routes/work.ios'
+import { Route as WorkDeckRouteImport } from './routes/work.deck'
+import { Route as WorkDatacoreRouteImport } from './routes/work.datacore'
 import { Route as WorkAuraiRouteImport } from './routes/work.aurai'
 import { Route as WorkAeonRouteImport } from './routes/work.aeon'
 import { Route as SkyeliteStoryRouteImport } from './routes/skyelite.story'
@@ -54,9 +57,24 @@ const SkyeliteIndexRoute = SkyeliteIndexRouteImport.update({
   path: '/',
   getParentRoute: () => SkyeliteRoute,
 } as any)
+const WorkTaskoraRoute = WorkTaskoraRouteImport.update({
+  id: '/work/taskora',
+  path: '/work/taskora',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkIosRoute = WorkIosRouteImport.update({
   id: '/work/ios',
   path: '/work/ios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkDeckRoute = WorkDeckRouteImport.update({
+  id: '/work/deck',
+  path: '/work/deck',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkDatacoreRoute = WorkDatacoreRouteImport.update({
+  id: '/work/datacore',
+  path: '/work/datacore',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkAuraiRoute = WorkAuraiRouteImport.update({
@@ -108,7 +126,10 @@ export interface FileRoutesByFullPath {
   '/skyelite/story': typeof SkyeliteStoryRoute
   '/work/aeon': typeof WorkAeonRoute
   '/work/aurai': typeof WorkAuraiRoute
+  '/work/datacore': typeof WorkDatacoreRoute
+  '/work/deck': typeof WorkDeckRoute
   '/work/ios': typeof WorkIosRoute
+  '/work/taskora': typeof WorkTaskoraRoute
   '/skyelite/': typeof SkyeliteIndexRoute
 }
 export interface FileRoutesByTo {
@@ -123,7 +144,10 @@ export interface FileRoutesByTo {
   '/skyelite/story': typeof SkyeliteStoryRoute
   '/work/aeon': typeof WorkAeonRoute
   '/work/aurai': typeof WorkAuraiRoute
+  '/work/datacore': typeof WorkDatacoreRoute
+  '/work/deck': typeof WorkDeckRoute
   '/work/ios': typeof WorkIosRoute
+  '/work/taskora': typeof WorkTaskoraRoute
   '/skyelite': typeof SkyeliteIndexRoute
 }
 export interface FileRoutesById {
@@ -140,7 +164,10 @@ export interface FileRoutesById {
   '/skyelite/story': typeof SkyeliteStoryRoute
   '/work/aeon': typeof WorkAeonRoute
   '/work/aurai': typeof WorkAuraiRoute
+  '/work/datacore': typeof WorkDatacoreRoute
+  '/work/deck': typeof WorkDeckRoute
   '/work/ios': typeof WorkIosRoute
+  '/work/taskora': typeof WorkTaskoraRoute
   '/skyelite/': typeof SkyeliteIndexRoute
 }
 export interface FileRouteTypes {
@@ -158,7 +185,10 @@ export interface FileRouteTypes {
     | '/skyelite/story'
     | '/work/aeon'
     | '/work/aurai'
+    | '/work/datacore'
+    | '/work/deck'
     | '/work/ios'
+    | '/work/taskora'
     | '/skyelite/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -173,7 +203,10 @@ export interface FileRouteTypes {
     | '/skyelite/story'
     | '/work/aeon'
     | '/work/aurai'
+    | '/work/datacore'
+    | '/work/deck'
     | '/work/ios'
+    | '/work/taskora'
     | '/skyelite'
   id:
     | '__root__'
@@ -189,7 +222,10 @@ export interface FileRouteTypes {
     | '/skyelite/story'
     | '/work/aeon'
     | '/work/aurai'
+    | '/work/datacore'
+    | '/work/deck'
     | '/work/ios'
+    | '/work/taskora'
     | '/skyelite/'
   fileRoutesById: FileRoutesById
 }
@@ -201,7 +237,10 @@ export interface RootRouteChildren {
   SkyeliteRoute: typeof SkyeliteRouteWithChildren
   WorkAeonRoute: typeof WorkAeonRoute
   WorkAuraiRoute: typeof WorkAuraiRoute
+  WorkDatacoreRoute: typeof WorkDatacoreRoute
+  WorkDeckRoute: typeof WorkDeckRoute
   WorkIosRoute: typeof WorkIosRoute
+  WorkTaskoraRoute: typeof WorkTaskoraRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -248,11 +287,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SkyeliteIndexRouteImport
       parentRoute: typeof SkyeliteRoute
     }
+    '/work/taskora': {
+      id: '/work/taskora'
+      path: '/work/taskora'
+      fullPath: '/work/taskora'
+      preLoaderRoute: typeof WorkTaskoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work/ios': {
       id: '/work/ios'
       path: '/work/ios'
       fullPath: '/work/ios'
       preLoaderRoute: typeof WorkIosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/deck': {
+      id: '/work/deck'
+      path: '/work/deck'
+      fullPath: '/work/deck'
+      preLoaderRoute: typeof WorkDeckRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/datacore': {
+      id: '/work/datacore'
+      path: '/work/datacore'
+      fullPath: '/work/datacore'
+      preLoaderRoute: typeof WorkDatacoreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/work/aurai': {
@@ -337,7 +397,10 @@ const rootRouteChildren: RootRouteChildren = {
   SkyeliteRoute: SkyeliteRouteWithChildren,
   WorkAeonRoute: WorkAeonRoute,
   WorkAuraiRoute: WorkAuraiRoute,
+  WorkDatacoreRoute: WorkDatacoreRoute,
+  WorkDeckRoute: WorkDeckRoute,
   WorkIosRoute: WorkIosRoute,
+  WorkTaskoraRoute: WorkTaskoraRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
