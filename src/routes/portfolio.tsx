@@ -180,6 +180,9 @@ function PortfolioPage() {
               { to: "/work/aeon", title: "Aeon", tag: "Cinematic launch", grad: "from-indigo-500/30 to-sky-500/10" },
               { to: "/halo", title: "USD Halo", tag: "Premium fintech", grad: "from-sky-400/30 to-indigo-500/10" },
               { to: "/work/ios", title: "iOS trio", tag: "Mobile templates", grad: "from-emerald-500/30 to-teal-500/10" },
+              { to: "/work/datacore", title: "Datacore", tag: "Linear-style", grad: "from-violet-500/30 to-orange-500/10" },
+              { to: "/work/taskora", title: "Taskora", tag: "SaaS dashboard", grad: "from-white/15 to-white/0" },
+              { to: "/work/deck", title: "Mux deck", tag: "HLS slide deck", grad: "from-rose-500/30 to-amber-500/10" },
             ].map((p) => (
               <Link
                 key={p.to}
